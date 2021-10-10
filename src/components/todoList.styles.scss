@@ -1,0 +1,55 @@
+.item-list-wrapper {
+  width: 90%;
+
+  .todo-list {
+    background: linear-gradient(
+      91deg,
+      rgba(93, 12, 255, 1) 0%,
+      rgba(155, 0, 250, 1) 100%
+    );
+    margin: 0.8rem;
+    padding: 0.7rem 0.4rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:last-child {
+      margin-bottom: 1.8rem;
+    }
+    &:hover {
+      background: rgba(0, 63, 136, 1);
+      background: linear-gradient(
+        91deg,
+        rgba(63, 55, 201, 1) 0%,
+        rgba(114, 9, 183, 1) 90%
+      );
+      color: #000;
+    }
+    &_text {
+      width: 100%;
+      color: #fff;
+      list-style: none;
+
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+
+    svg {
+      cursor: pointer;
+      width: 1.2rem;
+      height: 1.2rem;
+      margin: 0.2rem 0.5rem;
+      fill: #fff;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    svg.todo-list_delete {
+      fill: red;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.todo-list {
+  background-color: red;
+  margin: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.todo-list_text {
+  background-color: green;
+  width: 70%;
+  list-style: none;
+}
+/*# sourceMappingURL=todoList.styles.css.map */

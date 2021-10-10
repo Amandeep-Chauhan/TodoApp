@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+#root {
+  width: 100vw;
+  min-height: 60vh;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+body {
+  background-color: #031d44;
+}
+
+.todo-app {
+  width: 40vw;
+  height: auto;
+  background-color: #7bdff2;
+}
+
+.todo-app h1 {
+  text-align: center;
+}
+
+.todo-app form {
+  background-color: #f2b5d4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.todo-app form .todo-input {
+  border-radius: 0.5rem;
+  width: 80%;
+  height: 30px;
+}
+
+.todo-app form .todo-button {
+  height: 30px;
+  border-radius: 0.5rem;
+}
+/*# sourceMappingURL=app.styles.css.map */

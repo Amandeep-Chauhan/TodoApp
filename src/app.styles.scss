@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow: hidden;
+  font-size: 14px;
+  font-family: "Roboto Mono", monospace;
+  background: linear-gradient(
+    90deg,
+    rgba(48, 16, 255, 1) 0%,
+    rgba(100, 115, 255, 1) 65%
+  );
+}
+#root {
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+}
+// app css start from here
+.todo-app {
+  width: 40vw;
+  min-width: 500px;
+  min-height: 280px;
+  height: auto;
+  background: #161a2b;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    text-align: center;
+    color: #fff;
+    margin: 1rem 0;
+  }
+
+  form {
+    width: 75%;
+    display: flex;
+    border-radius: 5px;
+    border: #5d0cff;
+    margin-bottom: 1rem;
+
+    .todo-input {
+      font-family: "Roboto Mono", monospace;
+      width: 75%;
+      border-radius: 4px 0 0 4px;
+      color: #fff;
+      outline: none;
+      padding: 0.7rem 0.3rem;
+      border: 2px solid #5d0cff;
+      background-color: #161a2b;
+      text-indent: 12px;
+
+      &:focus {
+        box-shadow: 0 0 6px #5d0cff;
+      }
+      &::placeholder {
+        color: #fff;
+      }
+    }
+    .todo-button {
+      font-family: "Roboto Mono", monospace;
+      padding: 0.7rem;
+      border-radius: 0 4px 4px 0;
+      background: linear-gradient(
+        91deg,
+        rgba(93, 12, 255, 1) 0%,
+        rgba(155, 0, 250, 1) 100%
+      );
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: #fff;
+      flex: 1;
+
+      &:focus {
+        box-shadow: 0 0 8px #5d0cff;
+      }
+    }
+  }
+
+  .item-list-wrapper {
+    .scroll-wrapper {
+      max-height: 60vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .clearall {
+      margin: 1.5rem 0.8rem;
+      display: flex;
+      justify-content: flex-end;
+
+      .clearall-button {
+        outline: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.7rem 0.8rem;
+        border-radius: 4px;
+        font-family: "Roboto Mono", monospace;
+        font-size: 0.8rem;
+        color: #fff;
+        background: linear-gradient(
+          90deg,
+          rgba(93, 12, 255, 1) 0%,
+          rgba(155, 0, 250, 1) 100%
+        );
+      }
+    }
+  }
+  .intro {
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+
+    &-text {
+      border: 2px solid #5d0cff;
+      padding: 1rem 2rem;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+}
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 4px;
+}
