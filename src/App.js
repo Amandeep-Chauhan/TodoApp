@@ -23,7 +23,9 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("lists", JSON.stringify(items));
   }, [items]);
+
   useEffect(() => {}, [isEditOn]);
+
   const handlesubmit = (e) => {
     e.preventDefault();
     if (isEditOn) {
