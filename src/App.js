@@ -28,6 +28,14 @@ export default function App() {
 
   const handlesubmit = (e) => {
     e.preventDefault();
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].name === input) {
+        alert("Todo already exist");
+        setInput("");
+        setIsEditOn(false);
+        return;
+      }
+    }
     if (isEditOn) {
       if (!input) {
         alert("Enter a todo before Saving");
