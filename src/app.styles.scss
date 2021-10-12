@@ -23,6 +23,15 @@ body {
   display: grid;
   place-content: center;
 }
+@mixin button {
+  font-family: "Roboto Mono", monospace;
+  padding: 0.7rem 0.6rem;
+  border-radius: 0 4px 4px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
 // app css start from here
 .todo-app {
   width: 40vw;
@@ -34,7 +43,43 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 
+  .popup {
+    background: linear-gradient(
+      45deg,
+      rgba(155, 0, 250, 1) 0%,
+      rgba(93, 12, 255, 1) 100%
+    );
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 10rem;
+    color: #fff;
+    font-size: 1.6rem;
+    padding: 1rem;
+    box-shadow: 0 0 25px #5d0cff;
+
+    &-text {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    &-button {
+      @include button;
+      width: 5rem;
+      margin: 0 auto;
+      margin-top: 1rem;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(155, 0, 250, 1);
+    }
+  }
   h2 {
     text-align: center;
     color: #fff;
@@ -67,19 +112,23 @@ body {
       }
     }
     .todo-button {
-      font-family: "Roboto Mono", monospace;
-      padding: 0.7rem;
-      border-radius: 0 4px 4px 0;
+      @include button;
       background: linear-gradient(
         91deg,
         rgba(93, 12, 255, 1) 0%,
         rgba(155, 0, 250, 1) 100%
       );
-      border: none;
-      outline: none;
-      cursor: pointer;
-      color: #fff;
+      text-align: center;
       flex: 1;
+
+      &:hover {
+        background: linear-gradient(
+          91deg,
+          rgba(93, 12, 255, 1) 0%,
+          rgba(155, 0, 250, 1) 20%,
+          rgba(93, 12, 255, 1) 80%
+        );
+      }
 
       &:focus {
         box-shadow: 0 0 8px #5d0cff;

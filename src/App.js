@@ -15,6 +15,9 @@ export default function App() {
   const [items, setItems] = useState(getLocalItems());
   const [isEditOn, setIsEditOn] = useState(false);
   const [toEdit, setToEdit] = useState(null);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [isSame, setIsSame] = useState(false);
+  const [isEditNull, setIsEditNull] = useState(false);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -31,7 +34,7 @@ export default function App() {
     e.preventDefault();
     for (let i = 0; i < items.length; i++) {
       if (items[i].name === input) {
-        alert("Todo already exist");
+        setIsSame(true);
         setInput("");
         setIsEditOn(false);
         return;
@@ -39,7 +42,7 @@ export default function App() {
     }
     if (isEditOn) {
       if (!input) {
-        alert("Enter a todo before Saving");
+        setIsEditNull(true);
       } else {
         const newInput = items.map((item) => {
           if (toEdit !== null && toEdit === item.id) {
@@ -53,7 +56,7 @@ export default function App() {
       }
     } else {
       if (!input) {
-        alert("Enter a todo before adding");
+        setIsEmpty(true);
       } else {
         const allInput = { id: Date.now(), name: input };
         setItems([...items, allInput]);
@@ -84,6 +87,45 @@ export default function App() {
 
   return (
     <div className="todo-app">
+      {isEmpty ? (
+        <div className="popup">
+          <p className="popup-text">Enter a To-Do before adding</p>
+          <button
+            className="popup-button"
+            onClick={() => {
+              setIsEmpty(false);
+            }}
+          >
+            OK
+          </button>
+        </div>
+      ) : null}
+      {isSame ? (
+        <div className="popup">
+          <p className="popup-text">Todo already exist</p>
+          <button
+            className="popup-button"
+            onClick={() => {
+              setIsSame(false);
+            }}
+          >
+            OK
+          </button>
+        </div>
+      ) : null}
+      {isEditNull ? (
+        <div className="popup">
+          <p className="popup-text">Enter a todo before Saving</p>
+          <button
+            className="popup-button"
+            onClick={() => {
+              setIsEditNull(false);
+            }}
+          >
+            OK
+          </button>
+        </div>
+      ) : null}
       <h2>What's the Plan for Today ?</h2>
       <form className="todo-form" onSubmit={handlesubmit} autoComplete="off">
         <input
@@ -99,8 +141,8 @@ export default function App() {
         </button>
       </form>
       {items.length > 0 ? (
-        <ul className="item-list-wrapper">
-          <div className="scroll-wrapper">
+        <div className="item-list-wrapper">
+          <ul className="scroll-wrapper">
             {items.map((elem) => (
               <TodoList
                 key={elem.id}
@@ -110,7 +152,7 @@ export default function App() {
                 handleDelete={deleteItem}
               />
             ))}
-          </div>
+          </ul>
           {items.length > 1 ? (
             <div className="clearall">
               <button className="clearall-button" onClick={handleClearAll}>
@@ -118,7 +160,7 @@ export default function App() {
               </button>
             </div>
           ) : null}
-        </ul>
+        </div>
       ) : (
         <div className="intro">
           <p className="intro-text">welcome to my to-do app</p>
