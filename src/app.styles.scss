@@ -7,6 +7,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+::selection {
+  background: rgba(93, 12, 255, 1);
+}
 body {
   overflow: hidden;
   font-size: 14px;
@@ -96,6 +99,7 @@ body {
     .todo-input {
       font-family: "Roboto Mono", monospace;
       width: 75%;
+      font-size: 1rem;
       border-radius: 4px 0 0 4px;
       color: #fff;
       outline: none;
@@ -103,12 +107,14 @@ body {
       border: 2px solid #5d0cff;
       background-color: #161a2b;
       text-indent: 12px;
+      caret-color: #5d0cff;
 
       &:focus {
         box-shadow: 0 0 6px #5d0cff;
       }
       &::placeholder {
         color: #fff;
+        opacity: 80%;
       }
     }
     .todo-button {
@@ -120,14 +126,15 @@ body {
       );
       text-align: center;
       flex: 1;
+      transition: 0.2s ease-in;
 
       &:hover {
         background: linear-gradient(
           91deg,
           rgba(93, 12, 255, 1) 0%,
-          rgba(155, 0, 250, 1) 20%,
-          rgba(93, 12, 255, 1) 80%
+          rgba(93, 12, 255, 1) 100%
         );
+        letter-spacing: 1px;
       }
 
       &:focus {
@@ -178,6 +185,10 @@ body {
     &-text {
       border: 2px solid #5d0cff;
       padding: 1rem 2rem;
+      transition: all 0.3s;
+      &:hover {
+        padding: 1.2rem 2.2rem;
+      }
     }
   }
 }

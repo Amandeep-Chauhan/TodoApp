@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import "./app.styles.scss";
-import { useState } from "react";
 import TodoList from "./components/todoList";
+import Popup from "./components/popup";
 
 const getLocalItems = () => {
   const lists = localStorage.getItem("lists");
@@ -18,6 +18,7 @@ export default function App() {
   const [isEmpty, setIsEmpty] = useState(false);
   const [isSame, setIsSame] = useState(false);
   const [isEditNull, setIsEditNull] = useState(false);
+  const inputRef = useRef();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -85,54 +86,38 @@ export default function App() {
     setItems([]);
   };
 
+  const setEmpty = () => {
+    setIsEmpty(false);
+    setIsSame(false);
+    setIsEditNull(false);
+  };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [inputRef]);
+
   return (
     <div className="todo-app">
       {isEmpty ? (
-        <div className="popup">
-          <p className="popup-text">Enter a To-Do before adding</p>
-          <button
-            className="popup-button"
-            onClick={() => {
-              setIsEmpty(false);
-            }}
-          >
-            OK
-          </button>
-        </div>
+        <Popup text={"Enter a To-Do before adding"} setEmpty={setEmpty} />
       ) : null}
+
       {isSame ? (
-        <div className="popup">
-          <p className="popup-text">Todo already exist</p>
-          <button
-            className="popup-button"
-            onClick={() => {
-              setIsSame(false);
-            }}
-          >
-            OK
-          </button>
-        </div>
+        <Popup text={"Todo already exist"} setEmpty={setEmpty} />
       ) : null}
+
       {isEditNull ? (
-        <div className="popup">
-          <p className="popup-text">Enter a todo before Saving</p>
-          <button
-            className="popup-button"
-            onClick={() => {
-              setIsEditNull(false);
-            }}
-          >
-            OK
-          </button>
-        </div>
+        <Popup text={"Enter a todo before Saving"} setEmpty={setEmpty} />
       ) : null}
       <h2>What's the Plan for Today ?</h2>
+
       <form className="todo-form" onSubmit={handlesubmit} autoComplete="off">
         <input
           type="text"
           placeholder="Add a todo"
           value={input}
           onChange={handleChange}
+          ref={inputRef}
           name="text"
           className="todo-input"
         />
